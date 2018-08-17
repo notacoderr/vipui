@@ -15,7 +15,7 @@ class vanish {
 	  $this->main = $pg;
 	}
 
-	public function vanishUI($sender)
+	public function sendUI($sender)
 	{
 	      $api = $this->main->getServer()->getPluginManager()->getPlugin("FormAPI");
 	      $form = $api->createSimpleForm(function (Player $sender, $data){
