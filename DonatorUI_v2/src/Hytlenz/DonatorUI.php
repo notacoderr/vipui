@@ -23,7 +23,11 @@ class DonatorUI extends PluginBase implements Listener {
 
 		$this->api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
 
-		$this->vanishUI = new vanish($this);
+		$this->vanish = new vanish($this);
+		$this->fly = new fly($this);
+		$this->lights = new lights($this);
+		$this->gm = new gm($this);
+		$this->shout = new shout($this);
 
 		@mkdir($this->getDataFolder());
 		$this->saveDefaultConfig();
@@ -64,19 +68,19 @@ class DonatorUI extends PluginBase implements Listener {
 			    		$sender->sendMessage($this->getConfig()->get("cure.msg"));
 					break;
                     		case 2:
-                    			$this->flyUI($sender);
+                    			$this->fly->sendUI($sender);
                         		break;
                     		case 3:
-                    			$this->vanishUI($sender);
+                    			$this->vanish->sendUI($sender);
                         		break;
                     		case 4:
-                    			$this->lightsUI($sender);
+                    			$this->lights->sendUI($sender);
                         		break;
                    		case 5:
-                    			$this->gmUI($sender);
+                    			$this->gm->sendUI($sender);
                         		break;
                     		case 6:
-                   			$this->nickUI($sender);
+                   			$this->shout->sendUI($sender);
                         		break;
             			}
         		});
@@ -129,40 +133,7 @@ class DonatorUI extends PluginBase implements Listener {
         $form->sendToPlayer($sender);
         }
         
-      public function flyUI($sender){
-      $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-      $form = $api->createSimpleForm(function (Player $sender, $data){
-            $result = $data;
-            if ($result == null) {
-            }
-            switch ($result) {
-                    case 0:
-                    $sender->addTitle("§bCancelled", "§aYour Request");
-                        break;
-                    case 1:
-                    $sender->setAllowFlight(true);
-                    $sender->sendMessage($this->getConfig()->get("fly.on"));
-                    $sender->addTitle("§bFly", "§aEnabled!");
-                        break;
-                    case 2:
-                    $sender->setAllowFlight(false);
-                    $sender->sendMessage($this->getConfig()->get("fly.off"));
-                    $sender->addTitle("§bFly", "§cDisabled!");
-                        break;
-                    case 3:
-                    $command = "donator" ;
-                    $this->getServer()->getCommandMap()->dispatch($sender, $command);
-                        break;
-            }
-        });
-        $form->setTitle($this->getConfig()->get("fly.title"));
-        $form->setContent($this->getConfig()->get("fly.content"));
-        $form->addButton("§lExit");
-        $form->addButton("§l§2On");
-        $form->addButton("§l§4Off");
-        $form->addButton("§lBack");
-        $form->sendToPlayer($sender);
-        }
+      
         
     public function gmUI($sender){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
