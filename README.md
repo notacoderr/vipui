@@ -1,2 +1,5 @@
-# vipui
-random school project
+# VIP UI
+# RANDOM SCHOOL PROJECT
+UNDER DEV. WIP. DO NOT STEAL. YOU MONGREL.
+
+(c) Hytlenz - RCB/Codeeeh
