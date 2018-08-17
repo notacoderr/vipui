@@ -1,0 +1,39 @@
+#DonatorUI Config
+#By Hytlenz
+#Credits to Codeeeh to fix Errors
+#Property of PCP Plugins
+
+#Donator UI Message
+donator.title: "§lDonator Form"
+donator.content: "§fDonator Commands List. \n§bPlugin By: Hytlenz"
+#Cure Message
+cure.msg: "§l§8(§b!§8) §r§aYou have been §bCured!"
+#Fly Message
+fly.on: "§l§8(§b!§8) §r§aFlight Enabled!"
+fly.off: "§l§8(§b!§8) §r§cFlight Disabled!"
+#Fly UI Message
+fly.title: "§lFly Form"
+fly.content: "§fFlyUI Access Platform"
+#Vanish Message
+vanish.on: "§l§8(§b!§8) §r§aYou are now Vanished!"
+vanish.off: "§l§8(§b!§8) §r§aYou are now Visible!"
+#Vanish UI Message
+vanish.title: "§lVanish Form"
+vanish.content: "§fVanishUI Access Platform"
+#Nickname Message
+nick.title: "§lNickname Form"
+nick.message: "§l§8(§b!§8) §r§aYou succesfully update your nick!"
+nick.label: "§fNickname Access Platform"
+#Gamemode Message
+gms: "§l§8(§b!§8) §r§aYou're on gamemode §bSurvival!"
+gmc: "§l§8(§b!§8) §r§aYou're on gamemode §bCreative!"
+gmsp: "§l§8(§b!§8) §r§aYou're on gamemode §bSpectator!"
+#Gamemode UI Message
+gm.content: "§fGamemodeUI Access Platform"
+gm.title: "§lGamemode Form"
+#Lights Message
+lights.on: "§l§8(§b!§8) §r§aLights On!"
+lights.off: "§l§8(§b!§8) §r§cLights Off!"
+#Lights UI Message
+lights.title: "§lLights Form"
+lights.content: "§fLightsUI Access Platform"
