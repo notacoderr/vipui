@@ -14,64 +14,66 @@ use pocketmine\Server;
 
 class DonatorUI extends PluginBase implements Listener{
     
-    public function onEnable(){
+    public function onEnable() : void
+    {
         $this->getLogger()->info("[HytFormUI] - DonatorUI Enabled!");
-        $this->getServer()->getPluginManager()->registerEvents($this, $this);
+        Server::getInstance()->getPluginManager()->registerEvents($this, $this);
         $this->checkDepends();
-        
+	    
+        $this->api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
+	    
         @mkdir($this->getDataFolder());
         $this->saveDefaultConfig();
         $this->getResource("config.yml");
 
     }
 
-    public function checkDepends(){
-        $this->formapi = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-        if(is_null($this->formapi)){
+    public function checkDepends() : void
+    {
+        if(is_null(Server::getInstance()->getPluginManager()->getPlugin("FormAPI"))){
             $this->getLogger()->info("§4Please install FormAPI Plugin, disabling plugin...");
             $this->getPluginLoader()->disablePlugin($this);
         }
     }
 
-    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args):bool
+    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool
     {
         switch($cmd->getName()){
-        case "donator":
-        if(!($sender instanceof Player)){
-        	if($sender->hasPermission("donator.ui")){
-                $sender->sendMessage("§7This command can't be used here. Sorry!");
+        case "vip":
+        if(!($sender instanceof Player))
+	{
+        	$sender->sendMessage("§7This command must be used ingame!");
                 return true;
-        }
-    }
-        $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
+    	}
+			
+        
+			
         $form = $api->createSimpleForm(function (Player $sender, $data){
             $result = $data;
             if ($result == null) {
             }
             switch ($result) {
                     case 0:
-                    $sender->addTitle("§bCancelled", "§ayour request.");
                         break;
                     case 1:
-                    $sender->setHealth(20);
-                    $sender->setFood(20);
-                    $sender->sendMessage($this->getConfig()->get("cure.msg"));
-                    $sender->addTitle("§bCured", "§aYou have been.");
-						break;
+			    $sender->setHealth(20);
+			    $sender->setFood(20);
+			    $sender->sendMessage($this->getConfig()->get("cure.msg"));
+				break;
                     case 2:
-                    $this->FlyUI($sender);
+                    $this->flyUI($sender);
                         break;
                     case 3:
-                    $this->VanishUI($sender);
+                    $this->vanishUI($sender);
                         break;
                     case 4:
-                    $this->LightsUI($sender);
+                    $this->lightsUI($sender);
                         break;
                     case 5:
-                    $this->GmUI($sender);
+                    $this->gmUI($sender);
                         break;
                     case 6:
-                    $this->NickUI($sender);
+                    $this->nickUI($sender);
                         break;
 
             }
@@ -90,7 +92,7 @@ class DonatorUI extends PluginBase implements Listener{
         return true;
     }
     
-     public function VanishUI($sender){
+     public function vanishUI($sender){
       $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
       $form = $api->createSimpleForm(function (Player $sender, $data){
             $result = $data;
@@ -125,7 +127,7 @@ class DonatorUI extends PluginBase implements Listener{
         $form->sendToPlayer($sender);
         }
         
-      public function LightsUI($sender){
+      public function lightsUI($sender){
       $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
       $form = $api->createSimpleForm(function (Player $sender, $data){
             $result = $data;
@@ -160,7 +162,7 @@ class DonatorUI extends PluginBase implements Listener{
         $form->sendToPlayer($sender);
         }
         
-      public function FlyUI($sender){
+      public function flyUI($sender){
       $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
       $form = $api->createSimpleForm(function (Player $sender, $data){
             $result = $data;
@@ -195,7 +197,7 @@ class DonatorUI extends PluginBase implements Listener{
         $form->sendToPlayer($sender);
         }
         
-    public function GmUI($sender){
+    public function gmUI($sender){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
 	    $form = $api->createCustomForm(function (Player $sender, $data){
               if( !is_null($data)) {
@@ -227,7 +229,7 @@ class DonatorUI extends PluginBase implements Listener{
     $form->sendToPlayer($sender);
     }
      
-    public function NickUI($sender){
+    public function nickUI($sender){
     	$api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
 	    $form = $api->createCustomForm(function (Player $sender, $data){
                     if($data !== null){
