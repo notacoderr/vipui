@@ -6,5 +6,5 @@ author: Hytlenz
 
 commands:
   vip:
-    description: "Donator form commands"
-    permission: donator.ui
+    description: "Access VIP form"
+    permission: sakura.vip
