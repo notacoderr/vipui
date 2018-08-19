@@ -15,8 +15,8 @@ class gm {
 	}
   
   public function sendUI($sender){
-  $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-  $form = $api->createCustomForm(function (Player $sender, $data) {
+	  
+  $form = $this->main->api->createSimpleForm(function (Player $player, array $data) {
   
       if( !is_null($data)) {
 
