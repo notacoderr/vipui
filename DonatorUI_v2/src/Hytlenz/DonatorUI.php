@@ -63,7 +63,7 @@ class DonatorUI extends PluginBase implements Listener {
                 		return true;
 			}
 			
-        		$form = $api->createSimpleForm(function (Player $sender, $data){
+        		$form = $this->api->createSimpleForm(function (Player $sender, $data){
             		$result = $data;
 				
             			if ($result == null) {
