@@ -3,6 +3,7 @@
 namespace Hytlenz;
 
 use jojoe77777\FormAPI;
+
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 
@@ -30,6 +31,7 @@ class DonatorUI extends PluginBase implements Listener {
 		$this->shout = new shout($this);
 
 		@mkdir($this->getDataFolder());
+		
 		$this->saveDefaultConfig();
 		$this->getResource("config.yml");
 
@@ -60,6 +62,7 @@ class DonatorUI extends PluginBase implements Listener {
 					return;
             			}
             			switch ($result) {
+						
                     		case 0:
                         		break;
                     		case 1:
@@ -84,6 +87,7 @@ class DonatorUI extends PluginBase implements Listener {
                         		break;
             			}
         		});
+			
 			$form->setTitle($this->getConfig()->get("donator.title"));
 			$form->setContent($this->getConfig()->get("donator.content"));
 			$form->addButton("§4Exit");
@@ -95,95 +99,13 @@ class DonatorUI extends PluginBase implements Listener {
 			$form->addButton("§lNickname");
 			$form->sendToPlayer($sender);       
         	}
+		
         	return true;
 	}
-        
-      public function lightsUI($sender){
-      $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-      $form = $api->createSimpleForm(function (Player $sender, $data){
-            $result = $data;
-            if ($result == null) {
-            }
-            switch ($result) {
-                    case 0:
-                    $sender->addTitle("§bCancelled", "§aYour Request");
-                        break;
-                    case 1:
-                    $sender->addEffect(new EffectInstance(Effect::getEffect(Effect::NIGHT_VISION), 99999999, 0, false));
-                    $sender->addTitle("§bLights", "§aOn");
-                    $sender->sendMessage($this->getConfig()->get("lights.on"));
-                        break;
-                    case 2:
-                    $sender->removeEffect(Effect::NIGHT_VISION);
-                    $sender->addTitle("§bLights", "§cOff");
-                    $sender->sendMessage($this->getConfig->get("lights.off"));
-                        break;
-                    case 3:
-                    $command = "donator" ;
-                    $this->getServer()->getCommandMap()->dispatch($sender, $command);
-                        break;
-            }
-        });
-        $form->setTitle($this->getConfig()->get("lights.title"));
-        $form->setContent($this->getConfig()->get("lights.content"));
-        $form->addButton("§lExit");
-        $form->addButton("§l§2On");
-        $form->addButton("§l§4Off");
-        $form->addButton("§lBack");
-        $form->sendToPlayer($sender);
-        }
-        
-      
-        
-    public function gmUI($sender){
-        $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-	    $form = $api->createCustomForm(function (Player $sender, $data){
-              if( !is_null($data)) {
-                 switch($data[1]) {
-               case 0:
-                $sender->setGamemode(Player::SURVIVAL);
-                $sender->addTitle("§bSurvival", "§aMode");
-                $sender->sendMessage($this->getConfig()->get("gms"));
-                    break;
-                case 1:
-                $sender->setGamemode(Player::CREATIVE);
-                $sender->addTitle("§bCreative", "§aMode");
-                $sender->sendMessage($this->getConfig()->get("gmc"));
-                    break;
-                case 2:
-                $sender->setGamemode(Player::SPECTATOR);
-                $sender->addTitle("§bSpectator", "§aMode");
-                $sender->sendMessage($this->getConfig()->get("gmsp"));
-                    break;
-               default:
-                   return;
-            }
-  }
-
-    });
-    $form->setTitle($this->getConfig()->get("gm.title"));
-    $form->addLabel($this->getConfig()->get("gm.content"));
-    $form->addDropdown("Gamemodes", ["Survival", "Creative", "Spectator"]);
-    $form->sendToPlayer($sender);
-    }
-     
-    public function nickUI($sender){
-    	$api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-	    $form = $api->createCustomForm(function (Player $sender, $data){
-                    if($data !== null){
-				        $sender->setDisplayName("$data[1]");
-						$sender->setNameTag("$data[1]");
-						$sender->sendMessage($this->getConfig()->get("nick.message"));
-				    }
-				});
-				$form->setTitle($this->getConfig()->get("nick.title"));
-				$form->addLabel($this->getConfig()->get("nick.label"));
-				$form->addInput("Put your nick name here:", "Nickname");
-				$form->sendToPlayer($sender);
-		}
-
-    public function onDisable() : void
-    {
-        $this->getLogger()->info("[HytFormUI] - DonatorUI - VIPUI Disabled!");
-    }
+ 
+	public function onDisable() : void
+	{
+		$this->getLogger()->info("[HytFormUI] - DonatorUI - VIPUI Disabled!");
+	}
+	
 }
