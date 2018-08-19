@@ -52,12 +52,19 @@ class DonatorUI extends PluginBase implements Listener {
 		{
 			if(!($sender instanceof Player))
 			{
-        			$sender->sendMessage("§7This command must be used ingame!");
+        			$sender->sendMessage("This command must be used ingame!");
                 		return true;
     			}
 			
+			if(!( $sender->hasPermission("sakura.vip") ) )
+			{
+        			$sender->sendMessage("§cPlease upgrade to VIP to use this feature. If you are already a VIP, please contact a staff ASAP.");
+                		return true;
+			}
+			
         		$form = $api->createSimpleForm(function (Player $sender, $data){
             		$result = $data;
+				
             			if ($result == null) {
 					return;
             			}
