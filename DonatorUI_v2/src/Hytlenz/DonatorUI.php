@@ -63,56 +63,62 @@ class DonatorUI extends PluginBase implements Listener {
                 		return true;
 			}
 			
-        		$form = $this->api->createSimpleForm(function (Player $sender, $data){
-            		$result = $data;
-				
-            			if ($result == null) {
-					return;
-            			}
-            			switch ($result) {
-						
-                    		case 0:
-					$sender->setHealth(20);
-			    		$sender->setFood(20);
-			    		$sender->addTitle("§l§aRegenerating..", "§fHealth and Hunger filled..");
-                        		break;
-                    		case 1:
-			    		$sender->removeAllEffects();
-					$sender->addTitle("§l§bCleansing..", "§fLift all effects..");
-					break;
-                    		case 2:
-                    			$this->fly->sendUI($sender);
-                        		break;
-                    		case 3:
-                    			$this->vanish->sendUI($sender);
-                        		break;
-                    		case 4:
-                    			$this->lights->sendUI($sender);
-                        		break;
-                   		case 5:
-                    			$this->gm->sendUI($sender);
-                        		break;
-                    		case 6:
-                   			$this->shout->sendUI($sender);
-                        		break;
-            			}
-
-        		});
-			
-			$form->setTitle($this->getConfig()->get("donator.title"));
-			$form->setContent($this->getConfig()->get("donator.content"));
-			$form->addButton("§lRegen");
-			$form->addButton("§lCleanse");
-			$form->addButton("§lFly");
-			$form->addButton("§lVanish");
-			$form->addButton("§lLights");
-			$form->addButton("§lGamemode");
-			$form->addButton("§lShoutout");
-			$form->sendToPlayer($sender);
-			
+			$this->sendForm($sender);
         	}
-		
+
         	return true;
+	}
+	
+	private function sendForm(Player $sender)
+	{
+		$form = $this->formapi->createSimpleForm(function (Player $sender, array $data)
+		{
+			if (isset($data[0]))
+			{
+				switch ($data[0])
+				{
+					case 0:
+						$sender->setHealth(20);
+						$sender->setFood(20);
+						$sender->addTitle("§l§aRegenerating..", "§fHealth and Hunger filled..");
+						break;
+					case 1:
+						$sender->removeAllEffects();
+						$sender->addTitle("§l§bCleansing..", "§fLift all effects..");
+						break;
+					case 2:
+						$this->fly->sendUI($sender);
+						break;
+					case 3:
+						$this->vanish->sendUI($sender);
+						break;
+					case 4:
+						$this->lights->sendUI($sender);
+						break;
+					case 5:
+						$this->gm->sendUI($sender);
+						break;
+					case 6:
+						$this->shout->sendUI($sender);
+						break;
+				}
+				
+				return true;
+			}
+		});
+			
+		$form->setTitle($this->getConfig()->get("donator.title"));
+		$form->setContent($this->getConfig()->get("donator.content"));
+		$form->addButton("§lRegen");
+		$form->addButton("§lCleanse");
+		$form->addButton("§lFly");
+		$form->addButton("§lVanish");
+		$form->addButton("§lLights");
+		$form->addButton("§lGamemode");
+		$form->addButton("§lShoutout");
+		
+		$form->sendToPlayer($sender);
+	
 	}
  
 	public function onDisable() : void
