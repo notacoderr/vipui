@@ -16,7 +16,7 @@ class gm {
   
   public function sendUI($sender){
 	  
-  $form = $this->main->api->createSimpleForm(function (Player $player, array $data) {
+  $form = $this->main->api->createCustomForm(function (Player $player, array $data) {
   
       if( !is_null($data)) {
 
