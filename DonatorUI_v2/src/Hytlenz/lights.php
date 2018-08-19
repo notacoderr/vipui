@@ -18,8 +18,7 @@ class lights {
 
 public function sendUI($sender) {
 
-      $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-      $form = $api->createSimpleForm(function (Player $sender, $data) {
+      $form = $this->main->api->createSimpleForm(function (Player $player, array $data) {
       
             $result = $data;
             
