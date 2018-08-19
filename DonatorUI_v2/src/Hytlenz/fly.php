@@ -16,8 +16,7 @@ class fly {
 	}
 
   public function sendUI($sender){
-      $api = $this->main->getServer()->getPluginManager()->getPlugin("FormAPI");
-      $form = $api->createSimpleForm(function (Player $sender, $data){
+      $form = $this->main->api->createSimpleForm(function (Player $player, array $data) {
             $result = $data;
             if ($result == null) {
               return;
