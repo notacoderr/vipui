@@ -4,8 +4,8 @@
 #Property of PCP Plugins
 
 #Donator UI Message
-donator.title: "§lDonator Form"
-donator.content: "§fDonator Commands List. \n§bPlugin By: Hytlenz"
+donator.title: "§lVIP Form"
+donator.content: "§fPlease Select an Option\n§bPlugin By: Hytlenz\n§cDeveloped By: Codeeeh"
 #Cure Message
 cure.msg: "§l§8(§b!§8) §r§aYou have been §bCured!"
 #Fly Message
