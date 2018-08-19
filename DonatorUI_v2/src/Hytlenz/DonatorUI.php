@@ -18,6 +18,7 @@ class DonatorUI extends PluginBase implements Listener {
     	public function onEnable() : void
     	{
 		$this->getLogger()->info("[HytFormUI] - DonatorUI - VIP UI Enabled!");
+		
 		Server::getInstance()->getPluginManager()->registerEvents($this, $this);
 
 		$this->checkDepends();
@@ -71,11 +72,13 @@ class DonatorUI extends PluginBase implements Listener {
             			switch ($result) {
 						
                     		case 0:
+					$sender->setHealth(20);
+			    		$sender->setFood(20);
+			    		$sender->addTitle("§l§aRegenerating..", "§fHealth and Hunger filled..");
                         		break;
                     		case 1:
-			    		$sender->setHealth(20);
-			    		$sender->setFood(20);
-			    		$sender->sendMessage($this->getConfig()->get("cure.msg"));
+			    		$sender->removeAllEffects();
+					$sender->addTitle("§l§bCleansing..", "§fLift all effects..");
 					break;
                     		case 2:
                     			$this->fly->sendUI($sender);
@@ -93,18 +96,20 @@ class DonatorUI extends PluginBase implements Listener {
                    			$this->shout->sendUI($sender);
                         		break;
             			}
+
         		});
 			
 			$form->setTitle($this->getConfig()->get("donator.title"));
 			$form->setContent($this->getConfig()->get("donator.content"));
-			$form->addButton("§4Exit");
-			$form->addButton("§lCure");
+			$form->addButton("§lRegen");
+			$form->addButton("§lCleanse");
 			$form->addButton("§lFly");
 			$form->addButton("§lVanish");
 			$form->addButton("§lLights");
 			$form->addButton("§lGamemode");
-			$form->addButton("§lNickname");
-			$form->sendToPlayer($sender);       
+			$form->addButton("§lShoutout");
+			$form->sendToPlayer($sender);
+			
         	}
 		
         	return true;
