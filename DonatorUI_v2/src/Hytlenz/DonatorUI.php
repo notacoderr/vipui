@@ -71,7 +71,7 @@ class DonatorUI extends PluginBase implements Listener {
 	
 	private function sendForm(Player $sender)
 	{
-		$form = $this->formapi->createSimpleForm(function (Player $sender, array $data)
+		$form = $this->api->createSimpleForm(function (Player $sender, array $data)
 		{
 			if (isset($data[0]))
 			{
