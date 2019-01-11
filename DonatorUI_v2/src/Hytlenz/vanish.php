@@ -46,8 +46,8 @@ class vanish {
 		    }
 		});
 		
-		$form->setTitle($this->getConfig()->get("vanish.title"));
-		$form->setContent($this->getConfig()->get("vanish.content"));
+		$form->setTitle($this->main->getConfig()->get("vanish.title"));
+		$form->setContent($this->main->getConfig()->get("vanish.content"));
 		$form->addButton("§lExit");
 		$form->addButton("§l§2On");
 		$form->addButton("§l§4Off");
