@@ -37,8 +37,8 @@ class fly {
                        break;
             }
         });
-        $form->setTitle($this->getConfig()->get("fly.title"));
-        $form->setContent($this->getConfig()->get("fly.content"));
+        $form->setTitle($this->main->getConfig()->get("fly.title"));
+        $form->setContent($this->main->getConfig()->get("fly.content"));
         $form->addButton("§lExit");
         $form->addButton("§l§2On");
         $form->addButton("§l§4Off");
