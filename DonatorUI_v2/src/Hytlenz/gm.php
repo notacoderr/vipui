@@ -45,8 +45,8 @@ class gm {
     
   });
   
-    $form->setTitle($this->getConfig()->get("gm.title"));
-    $form->addLabel($this->getConfig()->get("gm.content"));
+    $form->setTitle($this->main->getConfig()->get("gm.title"));
+    $form->addLabel($this->main->getConfig()->get("gm.content"));
     $form->addDropdown("Gamemodes", ["§lSurvival", "§lCreative", "§lAdventure", "§lSpectator"]);
     
     $form->sendToPlayer($sender);
