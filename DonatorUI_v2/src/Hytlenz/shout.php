@@ -29,8 +29,8 @@ class shout {
       
     });
 
-    $form->setTitle($this->getConfig()->get("shout.title"));
-    $form->addLabel($this->getConfig()->get("shout.label"));
+    $form->setTitle($this->main->getConfig()->get("shout.title"));
+    $form->addLabel($this->main->getConfig()->get("shout.label"));
     $form->addInput("Put your nick name here:", "Nickname");
     $form->sendToPlayer($sender);
     
