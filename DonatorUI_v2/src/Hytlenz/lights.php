@@ -48,8 +48,8 @@ public function sendUI($sender) {
             }
         });
         
-          $form->setTitle($this->getConfig()->get("lights.title"));
-          $form->setContent($this->getConfig()->get("lights.content"));
+          $form->setTitle($this->main->getConfig()->get("lights.title"));
+          $form->setContent($this->main->getConfig()->get("lights.content"));
           $form->addButton("§lExit");
           $form->addButton("§l§2On");
           $form->addButton("§l§4Off");
